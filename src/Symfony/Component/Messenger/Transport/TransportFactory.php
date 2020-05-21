@@ -45,6 +45,8 @@ class TransportFactory implements TransportFactoryInterface
             $packageSuggestion = ' Run "composer require symfony/doctrine-messenger" to install Doctrine transport.';
         } elseif ('redis://' === substr($dsn, 0, 8)) {
             $packageSuggestion = ' Run "composer require symfony/redis-messenger" to install Redis transport.';
+        } elseif ('sqs://' === substr($dsn, 0, 6)) {
+            $packageSuggestion = ' Run "composer require symfony/amazon-sqs-messenger" to install Amazon SQS transport.';
         }
 
         throw new InvalidArgumentException(sprintf('No transport supports the given Messenger DSN "%s".%s.', $dsn, $packageSuggestion));
